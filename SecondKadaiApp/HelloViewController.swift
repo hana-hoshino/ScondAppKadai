@@ -10,21 +10,40 @@ import UIKit
 
 class HelloViewController: UIViewController {
 
-    
+    //nameLabelを入れる
     @IBOutlet weak var nameLabel: UILabel!
     
+    //nameの箱用意
     var name:String = ""
-    
 
-        override func viewDidLoad() {
+    //************************************************************************************
+
+    override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-            
-            // 上記では、nameを空欄で宣言していたが、
-            // 1画面目のViewControllerから遷移するときにprepareForSegueで
-            // nameの値を新たに代入されたので名前が入っている
-            nameLabel.text = "\(name)"+" さん"
+        
+         //Labelのフォント設定は
+         let stringAttributes1: [NSAttributedString.Key : Any] = [
+             .font : UIFont.systemFont(ofSize: 34.0)
+         ]
+         //Labelに設定を代入！
+         let string1 = NSAttributedString(string: "\(name)", attributes: stringAttributes1)
+
+         //************************************************************************************
+         //「さん」のフォント設定は
+         let stringAttributes2: [NSAttributedString.Key : Any] = [
+             .font : UIFont.systemFont(ofSize: 18.0)
+         ]
+         //「さん」に設定を代入！
+         let string2 = NSAttributedString(string: "さん", attributes: stringAttributes2)
+        
+         //************************************************************************************
+        
+        // Labelと「さん」をまとめてnameLabelに代入する
+        let mutableAttributedString = NSMutableAttributedString()
+        mutableAttributedString.append(string1)
+        mutableAttributedString.append(string2)
+        nameLabel.attributedText = mutableAttributedString
     }
     
 
